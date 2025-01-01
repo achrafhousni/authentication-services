@@ -7,7 +7,7 @@ pipeline {
     agent any
     tools {
         maven 'Maven3'
-        dockerTool 'Docker' // Use the Docker tool configured in Jenkins
+        dockerTool 'Docker' // Use the Docker tool configured in Jenkinss
 
     }
     environment {
