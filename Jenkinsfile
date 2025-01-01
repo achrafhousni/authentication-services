@@ -1,15 +1,5 @@
 pipeline {
-//      agent {
-//             docker {
-//                 image 'maven:3.9.7-eclipse-temurin-21-alpine'
-//             }
-//         }
     agent any
-//     tools {
-//         maven 'Maven3'
-//         dockerTool 'Docker' // Use the Docker tool configured in Jenkinss
-//
-//     }
     environment {
         DOCKER_IMAGE = 'wxesquevixos/authentication-services'
         DOCKER_TAG = 'latest'
@@ -45,21 +35,12 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                steps {
-                                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                                    sh '''
-                                        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                                        docker push wxesquevixos/authentication-services:latest
-                                    '''
-                                }
-                            }
-//                 script {
-//                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
-//                         sh """
-//                         docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
-//                         """
-//                     }
-//                 }
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh '''
+                        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                        docker push wxesquevixos/authentication-services:latest
+                    '''
+                }
             }
         }
         stage('Deploy to Minikube') {
