@@ -5,11 +5,11 @@ pipeline {
 //             }
 //         }
     agent any
-    tools {
-        maven 'Maven3'
-        dockerTool 'Docker' // Use the Docker tool configured in Jenkinss
-
-    }
+//     tools {
+//         maven 'Maven3'
+//         dockerTool 'Docker' // Use the Docker tool configured in Jenkinss
+//
+//     }
     environment {
         DOCKER_IMAGE = 'wxesquevixos/authentication-services'
         DOCKER_TAG = 'latest'
