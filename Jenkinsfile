@@ -45,13 +45,21 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
-                        sh """
-                        docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
-                        """
-                    }
-                }
+                steps {
+                                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                                    sh '''
+                                        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                                        docker push wxesquevixos/authentication-services:latest
+                                    '''
+                                }
+                            }
+//                 script {
+//                     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-credentials') {
+//                         sh """
+//                         docker push ${DOCKER_IMAGE}:${DOCKER_TAG}
+//                         """
+//                     }
+//                 }
             }
         }
         stage('Deploy to Minikube') {
