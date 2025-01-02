@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Checking out code...'
-                git branch: 'main', url: ${GITHUB_REPOSITORY_URL}
+                git branch: 'main', url: '${GITHUB_REPOSITORY_URL}'
             }
         }
         stage('Build') {
