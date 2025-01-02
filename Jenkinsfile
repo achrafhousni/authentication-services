@@ -3,13 +3,14 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'wxesquevixos/authentication-services'
         DOCKER_TAG = 'latest'
+        GITHUB_REPOSITORY_URL = 'https://github.com/wandersonxs/authentication-services.git'
     }
 
     stages {
         stage('Checkout') {
             steps {
                 echo 'Checking out code...'
-                git branch: 'main', url: 'https://github.com/wandersonxs/authentication-services.git'
+                git branch: 'main', url: ${GITHUB_REPOSITORY_URL}
             }
         }
         stage('Build') {
