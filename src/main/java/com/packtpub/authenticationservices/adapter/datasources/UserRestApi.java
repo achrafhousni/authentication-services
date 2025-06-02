@@ -30,7 +30,7 @@ public class UserRestApi implements UserRepository {
     public Flux<String> getRolesByUsername(String username) {
 
         String uri = String.format("%s/v1/users/%s/roles", userServiceUrl, username);
-        log.info("Calling URI - NOVO DEPLOY CHAPTER 15:::: {}", uri);
+        log.info("Calling URI - REDEPLOY CONFIG:::: {}", uri);
 
         return webClient.get()
                 .uri(uri)
