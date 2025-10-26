@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: authentication-services
-          image: wxesquevixos/authentication-services:latest
+          image: achrafh01/authentication-services:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
