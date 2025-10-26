@@ -3,7 +3,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'ahousni93/authentication-services'
         DOCKER_TAG = 'latest'
-        GITHUB_REPOSITORY_URL = 'https://github.com/wandersonxs/authentication-services.git'
+        GITHUB_REPOSITORY_URL = 'https://github.com/achrafhousni/authentication-services.git'
     }
 
     stages {
