@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = 'ahousni93/authentication-services'
+        DOCKER_IMAGE = 'achrafh01/authentication-services'
         DOCKER_TAG = 'latest'
         GITHUB_REPOSITORY_URL = 'https://github.com/achrafhousni/authentication-services.git'
     }
